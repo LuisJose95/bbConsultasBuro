@@ -23,9 +23,8 @@ import lombok.Setter;
 public class InstitucionFinanciera {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "COD_INSITUCION ")
-    private Integer codigo;
+    private String codigo;
     
     @Column(name = "NOMBRE ")
     private String nombre;

@@ -27,7 +27,7 @@ public class InstitucionFinancieraService {
         return this.institucionFinancieraRepo.findAll();
     }
     
-    public InstitucionFinanciera findById(Integer id) throws DataNotFoundException{
+    public InstitucionFinanciera findById(String id) throws DataNotFoundException{
         Optional<InstitucionFinanciera> inst = this.institucionFinancieraRepo.findById(id);
         if(inst.isPresent()){
             log.info("Se busco Institucion Financiera: {}",id);

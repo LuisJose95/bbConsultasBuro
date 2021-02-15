@@ -10,6 +10,6 @@ import ec.edu.espe.bbconsultas.buro.model.InstitucionFinanciera;
  */
 
 @Repository
-public interface InstitucionFinancieraRepository extends JpaRepository<InstitucionFinanciera,Integer>{
+public interface InstitucionFinancieraRepository extends JpaRepository<InstitucionFinanciera,String>{
     
 }

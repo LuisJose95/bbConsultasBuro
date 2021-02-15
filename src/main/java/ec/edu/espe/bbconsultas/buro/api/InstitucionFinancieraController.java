@@ -13,30 +13,28 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author soyjo
  */
-
 @RestController
 @RequestMapping("/api/bbConsultas/buro")
 @Slf4j
 public class InstitucionFinancieraController {
+
     private final InstitucionFinancieraService institucionFinancieraService;
 
     public InstitucionFinancieraController(InstitucionFinancieraService institucionFinancieraService) {
         this.institucionFinancieraService = institucionFinancieraService;
     }
-    
+
     @GetMapping("institucionFinanciera")
     public ResponseEntity get() {
         return ResponseEntity.ok(this.institucionFinancieraService.findAll());
     }
-    
+
     @GetMapping(path = "institucionFinanciera/{id}")
-    public ResponseEntity findById(@PathVariable("id") Integer id) throws DataNotFoundException{
-        try{
+    public ResponseEntity findById(@PathVariable("id") String id) throws DataNotFoundException {
+        try {
             return ResponseEntity.ok(this.institucionFinancieraService.findById(id));
-        }catch( DataNotFoundException e ){
+        } catch (DataNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-         
     }
-      
 }
