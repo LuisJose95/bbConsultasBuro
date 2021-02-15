@@ -1,5 +1,6 @@
 package ec.edu.espe.bbconsultas.buro.api;
 
+import ec.edu.espe.bbconsultas.buro.exception.DataNotFoundException;
 import ec.edu.espe.bbconsultas.buro.service.InstitucionFinancieraService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +30,13 @@ public class InstitucionFinancieraController {
     }
     
     @GetMapping(path = "institucionFinanciera/{id}")
-    public ResponseEntity findById(@PathVariable("id") Integer id){
-         return ResponseEntity.ok(this.institucionFinancieraService.findById(id));
+    public ResponseEntity findById(@PathVariable("id") Integer id) throws DataNotFoundException{
+        try{
+            return ResponseEntity.ok(this.institucionFinancieraService.findById(id));
+        }catch( DataNotFoundException e ){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+         
     }
       
 }

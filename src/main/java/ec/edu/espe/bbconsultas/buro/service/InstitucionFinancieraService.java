@@ -1,5 +1,6 @@
 package ec.edu.espe.bbconsultas.buro.service;
 
+import ec.edu.espe.bbconsultas.buro.exception.DataNotFoundException;
 import ec.edu.espe.bbconsultas.buro.repository.InstitucionFinancieraRepository;
 import ec.edu.espe.bbconsultas.buro.model.InstitucionFinanciera;
 import java.util.List;
@@ -22,14 +23,18 @@ public class InstitucionFinancieraService {
     }
     
     public List<InstitucionFinanciera> findAll(){
+        log.info("Se listo todas las instituciones financieras");
         return this.institucionFinancieraRepo.findAll();
     }
     
-    public InstitucionFinanciera findById(Integer id){
+    public InstitucionFinanciera findById(Integer id) throws DataNotFoundException{
         Optional<InstitucionFinanciera> inst = this.institucionFinancieraRepo.findById(id);
         if(inst.isPresent()){
+            log.info("Se busco Institucion Financiera: {}",id);
             return inst.get();
-        }
-        return null;
+        }else{
+            log.info("Se busco Institucion Financiera: {} sin exito",id);
+            throw new DataNotFoundException("Institucion Financiera con id "+id+" no encontrada");
+        }        
     }
 }
