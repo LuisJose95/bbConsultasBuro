@@ -15,27 +15,27 @@ import lombok.Setter;
  *
  * @author soyjo
  */
-
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "buro")
 public class Buro {
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "COD_BURO")
     private Integer codigo;
-    
+
     @Id
     @Column(name = "COD_PERSONA ")
     private Integer persona;
-    
+
     @Column(name = "CALIFICACION")
     private String calificacion;
-    
+
     @Column(name = "CANTIDAD_ADEUDADA")
     private BigDecimal cantidadAdeudada;
-    
+
     @Column(name = "CALIFICACION_ALTERNA")
     private BigDecimal calificacionAlterna;
 }
