@@ -14,24 +14,23 @@ import lombok.Setter;
  *
  * @author soyjo
  */
-
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "institucion_financiera")
 public class InstitucionFinanciera {
-    
+
     @Id
     @Column(name = "COD_INSITUCION ")
     private String codigo;
-    
+
     @Column(name = "NOMBRE ")
     private String nombre;
-    
+
     @Column(name = "TIPO ")
     private String tipo;
-    
+
     @Column(name = "CALIFICACION_RIESGO ")
     private String calificacionRiesgo;
 }

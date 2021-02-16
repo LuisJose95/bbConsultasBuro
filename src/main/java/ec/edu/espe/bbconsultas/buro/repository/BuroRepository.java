@@ -8,8 +8,7 @@ import org.springframework.stereotype.Repository;
  *
  * @author soyjo
  */
-
 @Repository
-public interface BuroRepository extends JpaRepository<Buro,Integer>{
-    
+public interface BuroRepository extends JpaRepository<Buro, Integer> {
+
 }

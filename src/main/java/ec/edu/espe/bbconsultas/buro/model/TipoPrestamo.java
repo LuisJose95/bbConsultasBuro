@@ -14,23 +14,22 @@ import lombok.Setter;
  *
  * @author soyjo
  */
-
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "tipo_prestamo")
 public class TipoPrestamo {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "COD_TIPO_PRESTAMO  ")
     private Integer codigo;
-    
+
     @Column(name = "NOMBRE ")
     private String nombre;
-    
+
     @Column(name = "DESCRIPCIOON ")
     private String descripcion;
-           
+
 }

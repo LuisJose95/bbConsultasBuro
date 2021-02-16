@@ -12,29 +12,29 @@ import org.springframework.stereotype.Service;
  *
  * @author soyjo
  */
-
 @Slf4j
 @Service
 public class InstitucionFinancieraService {
+
     private final InstitucionFinancieraRepository institucionFinancieraRepo;
 
     public InstitucionFinancieraService(InstitucionFinancieraRepository institucionFinancieraRepo) {
         this.institucionFinancieraRepo = institucionFinancieraRepo;
     }
-    
-    public List<InstitucionFinanciera> findAll(){
+
+    public List<InstitucionFinanciera> findAll() {
         log.info("Se listo todas las instituciones financieras");
         return this.institucionFinancieraRepo.findAll();
     }
-    
-    public InstitucionFinanciera findById(String id) throws DataNotFoundException{
+
+    public InstitucionFinanciera findById(String id) throws DataNotFoundException {
         Optional<InstitucionFinanciera> inst = this.institucionFinancieraRepo.findById(id);
-        if(inst.isPresent()){
-            log.info("Se busco Institucion Financiera: {}",id);
+        if (inst.isPresent()) {
+            log.info("Se busco Institucion Financiera: {}", id);
             return inst.get();
-        }else{
-            log.info("Se busco Institucion Financiera: {} sin exito",id);
-            throw new DataNotFoundException("Institucion Financiera con id "+id+" no encontrada");
-        }        
+        } else {
+            log.info("Se busco Institucion Financiera: {} sin exito", id);
+            throw new DataNotFoundException("Institucion Financiera con id " + id + " no encontrada");
+        }
     }
 }

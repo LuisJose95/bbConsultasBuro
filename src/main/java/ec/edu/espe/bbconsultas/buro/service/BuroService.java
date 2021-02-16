@@ -27,28 +27,33 @@ public class BuroService {
         this.buroRepository = buroRepository;
     }
 
+    private PersonaRQ buildPersona(Persona per) {
+        if (per != null) {
+            return PersonaRQ.builder()
+                    .cedula(per.getCedula())
+                    .nombres(per.getNombres())
+                    .apellidos(per.getApellidos())
+                    .nombreCompleto(per.getNombreCompleto())
+                    .genero(per.getGenero())
+                    .fechaNacimiento(per.getFechaNacimiento())
+                    .nacionalidad(per.getNacionalidad()).build();
+        }
+        return null;
+    }
+
     public BuroRQ findByCedula(String cedula) throws DataNotFoundException {
         Optional<Persona> findPerson = this.personaRepository.findById(cedula);
         if (findPerson.isPresent()) {
             Optional<Buro> findBuro = this.buroRepository.findById(findPerson.get().getCodigo());
-            
-            PersonaRQ persona = PersonaRQ.builder()
-                    .cedula(findPerson.get().getCedula())
-                    .nombres(findPerson.get().getNombres())
-                    .apellidos(findPerson.get().getApellidos())
-                    .nombreCompleto(findPerson.get().getNombreCompleto())
-                    .genero(findPerson.get().getGenero())
-                    .fechaNacimiento(findPerson.get().getFechaNacimiento())
-                    .nacionalidad(findPerson.get().getNacionalidad()).build();
-            
-            BuroRQ buro = BuroRQ.builder()
-                    .persona(persona)
+            log.info("Se busco el buro de {}",cedula);
+            return BuroRQ.builder()
+                    .persona(buildPersona(findPerson.get()))
                     .calificacion(findBuro.get().getCalificacion())
                     .cantidadAdeudada(findBuro.get().getCantidadAdeudada())
                     .calificacionAlterna(findBuro.get().getCalificacionAlterna()).build();
             
-            return buro;
         } else {
+            log.info("No se econtro el buro de {}",cedula);
             throw new DataNotFoundException("Buro de Crédito de persona " + cedula + " no encontrado");
         }
     }

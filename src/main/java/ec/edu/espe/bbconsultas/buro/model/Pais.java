@@ -12,7 +12,6 @@ import lombok.Setter;
  *
  * @author soyjo
  */
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -29,5 +28,4 @@ public class Pais {
 
     @Column(name = "COD_ALTERNO")
     private String codAlterno;
-    
 }

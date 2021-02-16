@@ -8,8 +8,7 @@ import ec.edu.espe.bbconsultas.buro.model.InstitucionFinanciera;
  *
  * @author soyjo
  */
-
 @Repository
-public interface InstitucionFinancieraRepository extends JpaRepository<InstitucionFinanciera,String>{
-    
+public interface InstitucionFinancieraRepository extends JpaRepository<InstitucionFinanciera, String> {
+
 }
