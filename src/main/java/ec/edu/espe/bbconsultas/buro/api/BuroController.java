@@ -21,7 +21,7 @@ public class BuroController {
     private final BuroService buroService;
 
     public BuroController(BuroService buroService) {
-        this.buroService = buroService;
+        this.buroService = buroService;      
     }
 
     @GetMapping(path = "/{cedula}")

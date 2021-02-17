@@ -1,6 +1,7 @@
 package ec.edu.espe.bbconsultas.buro.api.dto;
 
 import java.math.BigDecimal;
+import java.util.List;
 import lombok.Builder;
 import lombok.Data;
 
@@ -19,4 +20,6 @@ public class BuroRQ {
     private BigDecimal cantidadAdeudada;
 
     private BigDecimal calificacionAlterna;
+    
+    private List<PrestamoRQ> detallePrestamos;
 }

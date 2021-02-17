@@ -24,22 +24,22 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "tipo_prestamo")
+@Table(name = "prestamo")
 public class Prestamo {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "COD_PRESTAMO ")
+    @Column(name = "COD_PRESTAMO")
     private Integer codigo;
 
     @Id
-    @Column(name = "COD_PERSONA ")
-    private Integer persona;
+    @Column(name = "COD_PERSONA")
+    private Integer codPersona;
 
-    @JoinColumn(name = "COD_INSITUCION ", referencedColumnName = "COD_INSITUCION", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "COD_INSITUCION", referencedColumnName = "COD_INSITUCION", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private InstitucionFinanciera institucionFinanciera;
 
-    @JoinColumn(name = "COD_TIPO_PRESTAMO ", referencedColumnName = "COD_TIPO_PRESTAMO", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "COD_TIPO_PRESTAMO", referencedColumnName = "COD_TIPO_PRESTAMO", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private TipoPrestamo tipoPrestamo;
 
