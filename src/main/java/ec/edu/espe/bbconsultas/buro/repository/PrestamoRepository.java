@@ -10,6 +10,6 @@ import java.util.List;
  * @author soyjo
  */
 @Repository
-public interface PrestamoRepository extends JpaRepository<Prestamo, Integer> {
-    List<Prestamo> findByCodPersona(Integer codPersona);
+public interface PrestamoRepository extends JpaRepository<Prestamo, Integer> {    
+    List<Prestamo> findByCodPersona(Integer codPersona);        
 }

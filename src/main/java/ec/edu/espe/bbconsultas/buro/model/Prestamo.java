@@ -26,12 +26,12 @@ import lombok.Setter;
 @Entity
 @Table(name = "prestamo")
 public class Prestamo {
-
+    
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "COD_PRESTAMO")
     private Integer codigo;
-
-    @Id
+   
     @Column(name = "COD_PERSONA")
     private Integer codPersona;
 

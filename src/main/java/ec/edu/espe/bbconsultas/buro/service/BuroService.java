@@ -69,14 +69,13 @@ public class BuroService {
         if (findPerson.isPresent()) {
             Optional<Buro> findBuro = this.buroRepository.findById(findPerson.get().getCodigo());
             List<Prestamo> findPrestamo = this.prestamoRepository.findByCodPersona(findPerson.get().getCodigo());
-            log.info("Se busco el buro de {}", cedula);
+            log.info("Se busco el buro de {}", cedula);            
             return BuroRQ.builder()
                     .persona(buildPersona(findPerson.get()))
                     .calificacion(findBuro.get().getCalificacion())
                     .cantidadAdeudada(findBuro.get().getCantidadAdeudada())
                     .calificacionAlterna(findBuro.get().getCalificacionAlterna())
                     .detallePrestamos(findPrestamo.isEmpty() ? null : buildPrestamo(findPrestamo)).build();
-
         } else {
             log.info("No se econtro el buro de {}", cedula);
             throw new DataNotFoundException("Buro de Crédito de persona " + cedula + " no encontrado");
