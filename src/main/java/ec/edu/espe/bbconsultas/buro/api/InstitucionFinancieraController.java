@@ -2,7 +2,11 @@ package ec.edu.espe.bbconsultas.buro.api;
 
 import ec.edu.espe.bbconsultas.buro.exception.DataNotFoundException;
 import ec.edu.espe.bbconsultas.buro.service.InstitucionFinancieraService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,16 +31,25 @@ public class InstitucionFinancieraController {
     }
 
     @GetMapping("institucionFinanciera")
+    @ApiOperation(value = "Lista las instituciones financieras", notes = "Despliega una lista de las instituciones financieras registradas en el sitema")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Lista De Instituciones Financieras")
+    })
     public ResponseEntity get() {
         return ResponseEntity.ok(this.institucionFinancieraService.findAll());
     }
 
     @GetMapping(path = "institucionFinanciera/{id}")
+    @ApiOperation(value = "Busca una institución financiera", notes = "Busca una institución financiera mediante su código único .")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Institución Financiera encontrada"),
+        @ApiResponse(code = 404, message = "No se encontraron coincidencias")
+    })
     public ResponseEntity findById(@PathVariable("id") String id) throws DataNotFoundException {
         try {
             return ResponseEntity.ok(this.institucionFinancieraService.findById(id));
         } catch (DataNotFoundException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
 }
