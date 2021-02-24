@@ -28,11 +28,11 @@ import lombok.Setter;
     @UniqueConstraint(columnNames = {"CEDULA"})})
 public class Persona {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "COD_PERSONA")
     private Integer codigo;
 
-    @Id
     @Column(name = "CEDULA")
     private String cedula;
 

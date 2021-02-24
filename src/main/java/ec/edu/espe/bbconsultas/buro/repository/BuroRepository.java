@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BuroRepository extends JpaRepository<Buro, Integer> {
 
+    Buro findByPersona(Integer persona);
 }

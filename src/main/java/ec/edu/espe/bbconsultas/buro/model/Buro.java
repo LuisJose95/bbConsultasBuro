@@ -22,11 +22,11 @@ import lombok.Setter;
 @Table(name = "buro")
 public class Buro {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "COD_BURO")
     private Integer codigo;
 
-    @Id
     @Column(name = "COD_PERSONA ")
     private Integer persona;
 

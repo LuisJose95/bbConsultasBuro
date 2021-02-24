@@ -65,16 +65,16 @@ public class BuroService {
     }
 
     public BuroRQ findByCedula(String cedula) throws DataNotFoundException {
-        Optional<Persona> findPerson = this.personaRepository.findById(cedula);
-        if (findPerson.isPresent()) {
-            Optional<Buro> findBuro = this.buroRepository.findById(findPerson.get().getCodigo());
-            List<Prestamo> findPrestamo = this.prestamoRepository.findByCodPersona(findPerson.get().getCodigo());
+        Persona findPerson = this.personaRepository.findByCedula(cedula);
+        if (findPerson!=null) {
+            Buro findBuro = this.buroRepository.findByPersona(findPerson.getCodigo());
+            List<Prestamo> findPrestamo = this.prestamoRepository.findByCodPersona(findPerson.getCodigo());
             log.info("Se busco el buro de {}", cedula);            
             return BuroRQ.builder()
-                    .persona(buildPersona(findPerson.get()))
-                    .calificacion(findBuro.get().getCalificacion())
-                    .cantidadAdeudada(findBuro.get().getCantidadAdeudada())
-                    .calificacionAlterna(findBuro.get().getCalificacionAlterna())
+                    .persona(buildPersona(findPerson))
+                    .calificacion(findBuro.getCalificacion())
+                    .cantidadAdeudada(findBuro.getCantidadAdeudada())
+                    .calificacionAlterna(findBuro.getCalificacionAlterna())
                     .detallePrestamos(findPrestamo.isEmpty() ? null : buildPrestamo(findPrestamo)).build();
         } else {
             log.info("No se econtro el buro de {}", cedula);
