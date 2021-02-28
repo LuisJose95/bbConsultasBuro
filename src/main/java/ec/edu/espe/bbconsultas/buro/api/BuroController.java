@@ -47,6 +47,11 @@ public class BuroController {
     }
 
     @GetMapping(path = "cantidadAdeudada/{cantidadAdeudada}")
+    @ApiOperation(value = "Retorna una lista", notes = "Retorna una lista de personas que tengan una deuda mayor a cierta cantidad")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Personas encontradas"),
+        @ApiResponse(code = 404, message = "No se encontraron coincidencias")
+    })
     public ResponseEntity findByCantidadAdeudadaGreaterThan(@PathVariable("cantidadAdeudada") BigDecimal cantidadAdeudada) {
         try {
             return ResponseEntity.ok(this.buroService.findByCantidadAdeudadaGreaterThan(cantidadAdeudada));
@@ -56,6 +61,11 @@ public class BuroController {
     }
 
     @GetMapping(path = "calificacion/{calificacion}")
+    @ApiOperation(value = "Retorna una lista", notes = "Retorna una lista de personas que tengan una calificación crediticia especifica (VER, AMA, ROJ)")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Personas encontradas"),
+        @ApiResponse(code = 404, message = "No se encontraron coincidencias")
+    })
     public ResponseEntity findByCalificacion(@PathVariable("calificacion") String calificacion) {
         try {
             return ResponseEntity.ok(this.buroService.findByCalificacion(calificacion));
@@ -65,6 +75,12 @@ public class BuroController {
     }
 
     @GetMapping("/calificacionAndAdeudada")
+    @ApiOperation(value = "Retorna una lista", notes = "Busqueda por parámetros \n"+"Retorna una lista de personas que tengan una deuda mayor a cierta cantidad "
+                                                        + "y una calificación crediticia especifica (VER, AMA, ROJ)")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Personas encontradas"),
+        @ApiResponse(code = 404, message = "No se encontraron coincidencias")
+    })
     public ResponseEntity findByCalificacionAndCantidadAdeudadaGreaterThan(@RequestParam("calificacion") String calificacion,
             @RequestParam("cantidadAdeudada") BigDecimal cantidadAdeudada) {
         try {
