@@ -47,14 +47,14 @@ public class BuroController {
     }
 
     @GetMapping(path = "cantidadAdeudada/{cantidadAdeudada}")
-    @ApiOperation(value = "Retorna una lista", notes = "Retorna una lista de personas que tengan una deuda mayor a cierta cantidad")
+    @ApiOperation(value = "Retorna una lista", notes = "Retorna una lista de personas que tengan una deuda menor igual a cierta cantidad")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Personas encontradas"),
         @ApiResponse(code = 404, message = "No se encontraron coincidencias")
     })
-    public ResponseEntity findByCantidadAdeudadaGreaterThan(@PathVariable("cantidadAdeudada") BigDecimal cantidadAdeudada) {
+    public ResponseEntity findByCantidadAdeudadaLessThanEqual(@PathVariable("cantidadAdeudada") BigDecimal cantidadAdeudada) {
         try {
-            return ResponseEntity.ok(this.buroService.findByCantidadAdeudadaGreaterThan(cantidadAdeudada));
+            return ResponseEntity.ok(this.buroService.findByCantidadAdeudadaLessThanEqual(cantidadAdeudada));
         } catch (DataNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
@@ -75,16 +75,16 @@ public class BuroController {
     }
 
     @GetMapping("/calificacionAndAdeudada")
-    @ApiOperation(value = "Retorna una lista", notes = "Busqueda por parámetros \n"+"Retorna una lista de personas que tengan una deuda mayor a cierta cantidad "
+    @ApiOperation(value = "Retorna una lista", notes = "Busqueda por parámetros \n"+"Retorna una lista de personas que tengan una deuda menor igual a cierta cantidad "
                                                         + "y una calificación crediticia especifica (VER, AMA, ROJ)")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Personas encontradas"),
         @ApiResponse(code = 404, message = "No se encontraron coincidencias")
     })
-    public ResponseEntity findByCalificacionAndCantidadAdeudadaGreaterThan(@RequestParam("calificacion") String calificacion,
+    public ResponseEntity findByCalificacionAndCantidadAdeudadaLessThanEqual(@RequestParam("calificacion") String calificacion,
             @RequestParam("cantidadAdeudada") BigDecimal cantidadAdeudada) {
         try {
-            return ResponseEntity.ok(this.buroService.findByCalificacionAndCantidadAdeudadaGreaterThan(calificacion, cantidadAdeudada));
+            return ResponseEntity.ok(this.buroService.findByCalificacionAndCantidadAdeudadaLessThanEqual(calificacion, cantidadAdeudada));
         } catch (DataNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }

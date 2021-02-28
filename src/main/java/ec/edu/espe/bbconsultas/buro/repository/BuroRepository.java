@@ -14,8 +14,8 @@ import org.springframework.stereotype.Repository;
 public interface BuroRepository extends JpaRepository<Buro, Integer> {
 
     Buro findByPersona(Integer persona);
-    List<Buro> findByCantidadAdeudadaGreaterThan(BigDecimal cantidadAdeudada );
+    List<Buro> findByCantidadAdeudadaLessThanEqual(BigDecimal cantidadAdeudada );
     List<Buro> findByCalificacion(String calificacion );
-    List<Buro> findByCalificacionAndCantidadAdeudadaGreaterThan(String calificacion, BigDecimal cantidadAdeudada);
+    List<Buro> findByCalificacionAndCantidadAdeudadaLessThanEqual(String calificacion, BigDecimal cantidadAdeudada);
     
 }

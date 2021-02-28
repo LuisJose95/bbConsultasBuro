@@ -83,8 +83,8 @@ public class BuroService {
         }
     }
 
-    public List<BuroRQ> findByCantidadAdeudadaGreaterThan(BigDecimal cantidadAdeudada) throws DataNotFoundException {
-        List<Buro> listBuro = this.buroRepository.findByCantidadAdeudadaGreaterThan(cantidadAdeudada);
+    public List<BuroRQ> findByCantidadAdeudadaLessThanEqual(BigDecimal cantidadAdeudada) throws DataNotFoundException {
+        List<Buro> listBuro = this.buroRepository.findByCantidadAdeudadaLessThanEqual(cantidadAdeudada);
         if (!listBuro.isEmpty()) {
             List<BuroRQ> listBuroRQ = new ArrayList();
             for (int i = 0; i < listBuro.size(); i++) {
@@ -101,11 +101,11 @@ public class BuroService {
                     break;
                 }
             }
-            log.info("Se busco personas con cantidad adeudada mayor a: {}", cantidadAdeudada);
+            log.info("Se busco personas con cantidad adeudada menor igual a: {}", cantidadAdeudada);
             return listBuroRQ;
         } else {
-            log.info("No se encontro personas con cantidad adeudada mayor a {}", cantidadAdeudada);
-            throw new DataNotFoundException("No se encontro personas con cantidad adeudada mayor a: " + cantidadAdeudada);
+            log.info("No se encontro personas con cantidad adeudada menor igual a {}", cantidadAdeudada);
+            throw new DataNotFoundException("No se encontro personas con cantidad adeudada menor igual a: " + cantidadAdeudada);
         }
     }
 
@@ -135,8 +135,8 @@ public class BuroService {
         }
     }
 
-    public List<BuroRQ> findByCalificacionAndCantidadAdeudadaGreaterThan(String calificacion, BigDecimal cantidadAdeudada) throws DataNotFoundException {
-        List<Buro> listBuro = this.buroRepository.findByCalificacionAndCantidadAdeudadaGreaterThan(calificacion, cantidadAdeudada);
+    public List<BuroRQ> findByCalificacionAndCantidadAdeudadaLessThanEqual(String calificacion, BigDecimal cantidadAdeudada) throws DataNotFoundException {
+        List<Buro> listBuro = this.buroRepository.findByCalificacionAndCantidadAdeudadaLessThanEqual(calificacion, cantidadAdeudada);
         if (!listBuro.isEmpty()) {
             List<BuroRQ> listBuroRQ = new ArrayList();
             for (int i = 0; i < listBuro.size(); i++) {
@@ -153,11 +153,11 @@ public class BuroService {
                     break;
                 }
             }
-            log.info("Se busco personas con calificacion: {} y cantidad adeudada mayor a: {}", calificacion, cantidadAdeudada);
+            log.info("Se busco personas con calificacion: {} y cantidad adeudada menor igual a: {}", calificacion, cantidadAdeudada);
             return listBuroRQ;
         } else {
-            log.info("No se encontro personas con calificacion: {} y cantidad adeudada mayor a: {}", calificacion, cantidadAdeudada);
-            throw new DataNotFoundException("No se encontro personas con calificacion: " + calificacion + " y cantidad adeudada mayor a: " + cantidadAdeudada);
+            log.info("No se encontro personas con calificacion: {} y cantidad adeudada menor igual a: {}", calificacion, cantidadAdeudada);
+            throw new DataNotFoundException("No se encontro personas con calificacion: " + calificacion + " y cantidad adeudada menor igual a: " + cantidadAdeudada);
         }
     }
 }
