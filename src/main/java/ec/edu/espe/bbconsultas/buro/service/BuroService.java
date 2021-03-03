@@ -89,10 +89,10 @@ public class BuroService {
             List<BuroRQ> listBuroRQ = new ArrayList();
             for (int i = 0; i < listBuro.size(); i++) {
                 if (i < 100) {
-                    Optional<Persona> persona = this.personaRepository.findById(listBuro.get(i).getCodigo());
-                    List<Prestamo> prestamos = this.prestamoRepository.findByCodPersona(listBuro.get(i).getCodigo());
+                    Optional<Persona> persona = this.personaRepository.findById(listBuro.get(i).getPersona());
+                    List<Prestamo> prestamos = this.prestamoRepository.findByCodPersona(listBuro.get(i).getPersona());
                     listBuroRQ.add(BuroRQ.builder()
-                            .persona(buildPersona(persona.get()))
+                            .persona(persona.isPresent() ? buildPersona(persona.get()): null)
                             .calificacion(listBuro.get(i).getCalificacion())
                             .cantidadAdeudada(listBuro.get(i).getCantidadAdeudada())
                             .calificacionAlterna(listBuro.get(i).getCalificacionAlterna())
@@ -111,14 +111,14 @@ public class BuroService {
 
     public List<BuroRQ> findByCalificacion(String calificacion) throws DataNotFoundException {
         List<Buro> listBuro = this.buroRepository.findByCalificacion(calificacion);
-        if (!listBuro.isEmpty()) {
+        if (!listBuro.isEmpty()) {            
             List<BuroRQ> listBuroRQ = new ArrayList();
             for (int i = 0; i < listBuro.size(); i++) {
-                if (i < 100) {
-                    Optional<Persona> persona = this.personaRepository.findById(listBuro.get(i).getCodigo());
-                    List<Prestamo> prestamos = this.prestamoRepository.findByCodPersona(listBuro.get(i).getCodigo());
+                if (i < 100) {                    
+                    Optional<Persona> persona = this.personaRepository.findById(listBuro.get(i).getPersona());                    
+                    List<Prestamo> prestamos = this.prestamoRepository.findByCodPersona(listBuro.get(i).getPersona());                    
                     listBuroRQ.add(BuroRQ.builder()
-                            .persona(buildPersona(persona.get()))
+                            .persona(persona.isPresent() ? buildPersona(persona.get()): null)
                             .calificacion(listBuro.get(i).getCalificacion())
                             .cantidadAdeudada(listBuro.get(i).getCantidadAdeudada())
                             .calificacionAlterna(listBuro.get(i).getCalificacionAlterna())
@@ -140,11 +140,11 @@ public class BuroService {
         if (!listBuro.isEmpty()) {
             List<BuroRQ> listBuroRQ = new ArrayList();
             for (int i = 0; i < listBuro.size(); i++) {
-                if (i < 100) {
-                    Optional<Persona> persona = this.personaRepository.findById(listBuro.get(i).getCodigo());
-                    List<Prestamo> prestamos = this.prestamoRepository.findByCodPersona(listBuro.get(i).getCodigo());
+                if (i < 100) {                    
+                    Optional<Persona> persona = this.personaRepository.findById(listBuro.get(i).getPersona());                   
+                    List<Prestamo> prestamos = this.prestamoRepository.findByCodPersona(listBuro.get(i).getPersona());
                     listBuroRQ.add(BuroRQ.builder()
-                            .persona(buildPersona(persona.get()))
+                            .persona(persona.isPresent() ? buildPersona(persona.get()): null)
                             .calificacion(listBuro.get(i).getCalificacion())
                             .cantidadAdeudada(listBuro.get(i).getCantidadAdeudada())
                             .calificacionAlterna(listBuro.get(i).getCalificacionAlterna())

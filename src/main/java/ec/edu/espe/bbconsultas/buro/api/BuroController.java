@@ -66,7 +66,7 @@ public class BuroController {
         @ApiResponse(code = 200, message = "Personas encontradas"),
         @ApiResponse(code = 404, message = "No se encontraron coincidencias")
     })
-    public ResponseEntity findByCalificacion(@PathVariable("calificacion") String calificacion) {
+    public ResponseEntity findByCalificacion(@PathVariable("calificacion") String calificacion) {        
         try {
             return ResponseEntity.ok(this.buroService.findByCalificacion(calificacion));
         } catch (DataNotFoundException e) {
